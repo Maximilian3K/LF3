@@ -1,0 +1,74 @@
+#IP in Binär
+a = input("Eingabe: ")
+a = int(a)
+
+tempa = "{0:b}".format(5)
+tempb = "{0:b}".format(2)
+tempc = "{0:b}".format(24)
+tempd = "{0:b}".format(25)
+
+IPEingabe = (tempa, tempb, tempc, tempd)
+
+IPBinaerAusgabe = ".".join(IPEingabe)
+print(IPBinaerAusgabe)
+
+
+
+
+#Subnetz zu Binär
+SubIPa = "{0:b}".format(254)
+SubIPb = "{0:b}".format(2)
+SubIPc = "{0:b}".format(24)
+SubIPd = "{0:b}".format(25)
+
+SubIPEingabe = (SubIPa, SubIPb, SubIPc, SubIPd)
+
+SubnetzAusgabe = ".".join(SubIPEingabe)
+print(SubnetzAusgabe)
+
+
+
+
+#Suffix
+
+a = input("Eingabe: ")
+a = int(a)
+
+c = ()
+c = int(c)
+
+if (a <= 8):
+    Suffix = "{0:b}".format(a)
+    Suffix = int(Suffix)
+    SuffixEingabe = (Suffix, "00000000", "00000000", "00000000")
+    
+    if (Suffix > 8):
+        c = Suffix - 8
+        SuffixEingabe = Suffix >> c
+
+    SuffixAusgabe = ".".join(SuffixEingabe)
+    print(SuffixAusgabe)
+
+elif (a <= 16):
+    Suffix = "{0:b}".format(a)
+    SuffixEingabe = ("255", Suffix, "00000000", "00000000")
+
+    SuffixAusgabe = ".".join(SuffixEingabe)
+    print(SuffixAusgabe)
+
+elif (a <= 24):
+    Suffix = "{0:b}".format(a)
+    SuffixEingabe = ("255", "255", Suffix, "00000000")
+
+    SuffixAusgabe = ".".join(SuffixEingabe)
+    print(SuffixAusgabe)
+
+elif (a <= 32):
+    Suffix = "{0:b}".format(a)
+    SuffixEingabe = ("255", "255", "255", Suffix)
+
+    SuffixAusgabe = ".".join(SuffixEingabe)
+    print(SuffixAusgabe)
+
+else:
+    print("Gngültige Eingabe!")
