@@ -1,0 +1,71 @@
+from tkinter import * 
+import tkinter
+
+Fenster = Tk()
+Fenster.title ("Test Fenster")
+Fenster.geometry("300x300")
+
+myvarA = int()
+def mywarWritten(*args):
+    myvarA = entry_myvarA.get()
+entry_myvarA = Entry(Fenster, textvariable=myvarA)
+entry_myvarA.pack()
+entry_myvarA.place(x=5, y=5, width=30)
+
+myvarB = StringVar()
+def mywarWritten(*args):
+    myvarB = entry_myvarB.get()
+entry_myvarB = Entry(Fenster, textvariable=myvarB)
+entry_myvarB.pack()
+entry_myvarB.place(x=45, y=5, width=30)
+
+myvarC = StringVar()
+def mywarWritten(*args):
+    myvarC = entry_myvarC.get()
+entry_myvarC = Entry(Fenster, textvariable=myvarC)
+entry_myvarC.pack()
+entry_myvarC.place(x=85, y=5, width=30)
+
+myvarD = StringVar()
+def mywarWritten(*args):
+    global myvarD
+    myvarD = entry_myvarD.get()
+    return myvarD
+entry_myvarD = Entry(Fenster, textvariable=myvarD)
+entry_myvarD.pack()
+entry_myvarD.place(x=125, y=5, width=30)
+
+
+def iptobinaer():
+    if (CalculateIP['state'] == tkinter.NORMAL):
+        global myvarA
+        myvarA = int()
+        global myvarB
+        myvarB = int()
+        global myvarC
+        myvarC = int()
+        global myvarD
+        myvarD = int()
+
+        tempa = "{0:b}".format(myvarA)
+        tempb = "{0:b}".format(myvarB)
+        tempc = "{0:b}".format(myvarC)
+        tempd = "{0:b}".format(myvarD)
+
+        IPEingabe = (tempa, tempb, tempc, tempd)
+
+        IPBinaerAusgabe = ".".join(IPEingabe)
+        IPBINAUS.config(text=IPBinaerAusgabe)
+        print(myvarA, myvarB, myvarC, myvarD)
+        print(entry_myvarA, entry_myvarB, entry_myvarC, entry_myvarD)
+        print(IPBinaerAusgabe)
+
+CalculateIP = Button(master=Fenster, bg='white', text='OK', command=iptobinaer)
+CalculateIP.place(x=10, y=100, width=100, height=22)
+
+IPBINAUS = Label(master=Fenster, bg='gray', text='')
+IPBINAUS.place(x=164, y=144, width=100, height=27)
+
+
+Fenster.mainloop()
+mainloop()
