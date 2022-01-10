@@ -3,7 +3,7 @@ import tkinter
 
 Fenster = Tk()
 Fenster.title ("Test Fenster")
-Fenster.geometry("300x300")
+Fenster.geometry("450x300")
 
 myvarA = int()
 myvarB = int()
@@ -15,16 +15,121 @@ myvarG = int()
 myvarH = int()
 myvarI = int()
 
+myvarX = int(0)
+myvarY = int(255)
+myvarZ = int(00000000)
+
+SuffixAusgabe = str(123456)
+AVergleichVar = str()
+AVergleichVar1 = str()
+AVergleichVar2 = str()
+AVergleichVar3 = str()
+AVergleichVar4 = str()
+AVergleichVar5 = str()
+AVergleichVar6 = str()
+AVergleichVar7 = str()
+AVergleichVar8 = str()
+AVergleichVar9 = str()
+AVergleichVar10 = str()
+AVergleichVar11 = str()
+AVergleichVar12 = str()
+AVergleichVar13 = str()
+AVergleichVar14 = str()
+AVergleichVar15 = str()
+AVergleichVar16 = str()
+AVergleichVar17 = str()
+AVergleichVar18 = str()
+AVergleichVar19 = str()
+AVergleichVar20 = str()
+AVergleichVar21 = str()
+AVergleichVar22 = str()
+AVergleichVar23 = str()
+AVergleichVar24 = str()
+AVergleichVar25 = str()
+AVergleichVar26 = str()
+AVergleichVar27 = str()
+AVergleichVar28 = str()
+AVergleichVar29 = str()
+AVergleichVar30 = str()
+AVergleichVar31 = str()
+AVergleichVar32 = str()
+
+BVergleichVar1 = str()
+BVergleichVar2 = str()
+BVergleichVar3 = str()
+BVergleichVar4 = str()
+BVergleichVar5 = str()
+BVergleichVar6 = str()
+BVergleichVar7 = str()
+BVergleichVar8 = str()
+BVergleichVar9 = str()
+BVergleichVar10 = str()
+BVergleichVar11 = str()
+BVergleichVar12 = str()
+BVergleichVar13 = str()
+BVergleichVar14 = str()
+BVergleichVar15 = str()
+BVergleichVar16 = str()
+BVergleichVar17 = str()
+BVergleichVar18 = str()
+BVergleichVar19 = str()
+BVergleichVar20 = str()
+BVergleichVar21 = str()
+BVergleichVar22 = str()
+BVergleichVar23 = str()
+BVergleichVar24 = str()
+BVergleichVar25 = str()
+BVergleichVar26 = str()
+BVergleichVar27 = str()
+BVergleichVar28 = str()
+BVergleichVar29 = str()
+BVergleichVar30 = str()
+BVergleichVar31 = str()
+BVergleichVar32 = str()
+
+DVergleichVar1 = str()
+DVergleichVar2 = str()
+DVergleichVar3 = str()
+DVergleichVar4 = str()
+DVergleichVar5 = str()
+DVergleichVar6 = str()
+DVergleichVar7 = str()
+DVergleichVar8 = str()
+DVergleichVar9 = str()
+DVergleichVar10 = str()
+DVergleichVar11 = str()
+DVergleichVar12 = str()
+DVergleichVar13 = str()
+DVergleichVar14 = str()
+DVergleichVar15 = str()
+DVergleichVar16 = str()
+DVergleichVar17 = str()
+DVergleichVar18 = str()
+DVergleichVar19 = str()
+DVergleichVar20 = str()
+DVergleichVar21 = str()
+DVergleichVar22 = str()
+DVergleichVar23 = str()
+DVergleichVar24 = str()
+DVergleichVar25 = str()
+DVergleichVar26 = str()
+DVergleichVar27 = str()
+DVergleichVar28 = str()
+DVergleichVar29 = str()
+DVergleichVar30 = str()
+DVergleichVar31 = str()
+DVergleichVar32 = str()
+
+IPBinaerAusgabe = int()
+SubnetmaksAUS = int()
+tempI = int()
+Suffix = int()
+
 def myvarWrittenIP():
-    global myvarA
     myvarA = int(entry_myvarA.get())
-    print(myvarA)
     myvarB = int(entry_myvarB.get())
-    print(myvarB)
     myvarC = int(entry_myvarC.get())
-    print(myvarC)
     myvarD = int(entry_myvarD.get())
-    print(myvarD)
 
     tempa = "{0:08b}".format(myvarA)
     tempb = "{0:08b}".format(myvarB)
@@ -33,28 +138,17 @@ def myvarWrittenIP():
 
     IPEingabe = (tempa, tempb, tempc, tempd)
 
+    global IPBinaerAusgabe
     IPBinaerAusgabe = ".".join(IPEingabe)
     IPBINAUS.config(text=IPBinaerAusgabe)
     print(myvarA, myvarB, myvarC, myvarD)
     print(IPBinaerAusgabe)
 
-def SuffixInput():
-    global myvarI
-    myvarI = int(entry_myvarI.get())
-
-    tempi = "{0:08b}".format(myvarE)
-    print(tempi)
-
 def myvarWrittenSubNetMask():
-    global myvarE
     myvarE = int(entry_myvarE.get())
-    print(myvarE)
     myvarF = int(entry_myvarF.get())
-    print(myvarF)
     myvarG = int(entry_myvarG.get())
-    print(myvarG)
     myvarH = int(entry_myvarH.get())
-    print(myvarH)
 
     tempe = "{0:08b}".format(myvarE)
     tempf = "{0:08b}".format(myvarF)
@@ -63,24 +157,40 @@ def myvarWrittenSubNetMask():
 
     SubNetEingabe = (tempe, tempf, tempg, temph)
 
+    global SubnetmaksAUS
     SubnetmaksAUS = ".".join(SubNetEingabe)
     SUBNETAUS.config(text=SubnetmaksAUS)
     print(myvarE, myvarF, myvarG, myvarH)
     print(SubnetmaksAUS)
 
-def SuffixAUS():
-    if (8 > myvarI <= 8):
-        Suffix = "{0:b}".format(myvarI)
-        Suffix = (Suffix)
-        SuffixEingabe = (Suffix, "00000000", "0000000", "00000000")
+def SuffixInput():
+    global tempI
+    myvarI = int(entry_myvarI.get())
 
-        SuffixAusgabe = ".".join(SuffixEingabe)
+    tempI = "{0:08b}".format(myvarI)
+    
+    PRINTSUFFIXBIN.config(text=tempI)
+
+    print(tempI)
+
+def SuffixAUS():
+
+    myvarI = int(entry_myvarI.get())
+
+    if (8 > myvarI <= 8):
+        global Suffix
+        Suffix = "{0:b}".format(myvarI)
+        Suffix = int(Suffix)
+        SuffixEingabe = (Suffix, myvarX, myvarX, myvarX)
+
+        SuffixAusgabe = "".join(SuffixEingabe)
         PRINTSUFFIXBIN.config(text=SuffixAusgabe)
         print(SuffixAusgabe)
 
     elif (16 > myvarI <= 16):
         Suffix = "{0:b}".format(myvarI)
-        SuffixEingabe = ("255", Suffix, "00000000", "00000000")
+        Suffix = int(Suffix)
+        SuffixEingabe = (myvarY, Suffix, myvarX, myvarX)
 
         SuffixAusgabe = ".".join(SuffixEingabe)
         PRINTSUFFIXBIN.config(text=SuffixAusgabe)
@@ -88,7 +198,8 @@ def SuffixAUS():
 
     elif (16 > myvarI <= 24):
         Suffix = "{0:b}".format(myvarI)
-        SuffixEingabe = ("255", "255", Suffix, "00000000")
+        Suffix = int(Suffix)
+        SuffixEingabe = (myvarY, myvarY, Suffix, myvarX)
 
         SuffixAusgabe = ".".join(SuffixEingabe)
         PRINTSUFFIXBIN.config(text=SuffixAusgabe)
@@ -96,7 +207,8 @@ def SuffixAUS():
 
     elif (24 > myvarI <= 32):
         Suffix = "{0:b}".format(myvarI)
-        SuffixEingabe = ("255", "255", "255", Suffix)
+        Suffix = int(Suffix)
+        SuffixEingabe = (myvarY, myvarY, myvarY, Suffix)
 
         SuffixAusgabe = ".".join(SuffixEingabe)
         PRINTSUFFIXBIN.config(text=SuffixAusgabe)
@@ -105,12 +217,37 @@ def SuffixAUS():
     else:
         PRINTSUFFIXBIN.config(text="Ungueltig")
 
-
 def iptobinaer():
     if (CalculateIP['state'] == tkinter.NORMAL):
         myvarWrittenIP()
         myvarWrittenSubNetMask()
+        SuffixAUS()
 
+
+def test():
+    i = str(0)
+    n = int(6)
+    while i < n: 
+        global AVergleichVar1
+        global BVergleichVar1
+        global DVergleichVar1
+
+        AVergleichVar%i = (SuffixAusgabe[i])
+        BVergleichVar1 = (IPBinaerAusgabe[i])
+
+        if (AVergleichVar1 == BVergleichVar1):
+            DVergleichVar1 = AVergleichVar1
+        else:
+            DVergleichVar1 = 0
+
+        i+= 1
+
+    print(AVergleichVar1, AVergleichVar2, AVergleichVar3, AVergleichVar4, AVergleichVar5, AVergleichVar6)
+
+    print(DVergleichVar1, DVergleichVar2, DVergleichVar3, DVergleichVar4, '^', DVergleichVar5, DVergleichVar6, DVergleichVar7, DVergleichVar8 , '.', 
+          DVergleichVar9, DVergleichVar10, DVergleichVar11, DVergleichVar12, '^', DVergleichVar13, DVergleichVar14, DVergleichVar15, DVergleichVar16, '.',
+          DVergleichVar17, DVergleichVar18, DVergleichVar19, DVergleichVar20, '^', DVergleichVar21, DVergleichVar22, DVergleichVar23, DVergleichVar24, '.',
+          DVergleichVar25, DVergleichVar26, DVergleichVar27, DVergleichVar28, '^', DVergleichVar29, DVergleichVar30, DVergleichVar31, DVergleichVar32)
 
 
 
