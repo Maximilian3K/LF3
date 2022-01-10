@@ -5,9 +5,8 @@ $FirstName = Read-Host "Vorname"
 $ErsterBuchstabe = Read-Host "Erster Buchstabe des Vornamens"
 $Lastname = Read-Host "Nachname"
 
-
-#Passwort generieren
 $cof = Read-Host "Koplexes Passwort? (y/n)"
+$Group = Read-Host "Welche Nutzergruppe? (Admin/Leader/Member)"
 
 #Passwort Komplex
 if ($cof -eq 'y') {
@@ -37,21 +36,30 @@ Write-Host $generate
 
 
 #Generate User
-New-ADUser -Name "$FirstName $LastName" -GivenName "$FirstName" -Surname "$LastName" -SamAccountName "$ErsterBuchstabe.$Lastname" -AccountPassword (ConvertFrom-SecureString -AsPlainText "$generate" -force) -Enable $true
-
+New-ADUser -Name "$FirstName $LastName" -GivenName "$FirstName" -Surname "$LastName" -SamAccountName "$ErsterBuchstabe.$Lastname" -EmailAddress ($_.givenName + '.' + $_.surname + '@test.net') -AccountPassword (ConvertFrom-SecureString -AsSecureString "$generate" -force) -Enable $true
 
 #Userdaten In Textdokument
 $pfad = "C:\User\%User%\Desktop\"
-for($i=0; $i -lt; $i++) {
+for($i=0; $i -lt $i++) {
 New-Item -Path $pfad -ItemType file -Name "GeneratedUser.txt"}
 
 Get-Command -Verb Format-List
-$userdaten = $FirstName, $Lastname, "$ErsterBruchstabe.$Nachname", $generate
+$userdaten = $FirstName, $Lastname, "$ErsterBruchstabe.$Nachname", $generate, $Group
 Add-Content -Path C:\User\%User%\Desktop\GeneratedUser.txt $userdaten
 
-}
+
+if ($Group -eq 'Admin') {
+Add-ADGroupMember -Identity AdminGroup -Members "$ErsterBruchstabe.$Nachname"
+Add-ADGroupMember -Identity SuperadminGroup -Members "$ErsterBruchstabe.$Nachname"
+Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
 
 
-Read-SqlTableData -ServerInstance "127.0.0.1" -DatabaseName "UserDB" -SchemaName "dbo" -TableName "User" | get-ForEach-Object -Process if (get-date -format "yyyy/MM/dd") eq (ENDDATE) {
-    Disable-ADAccount -Identity (%_)
+if ($Group -eq 'Leader') {
+Add-ADGroupMember -Identity LeaderGroup -Members "$ErsterBruchstabe.$Nachname"
+Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"
+Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+
+if ($Group -eq 'Member') {
+Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+
 }
