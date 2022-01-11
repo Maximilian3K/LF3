@@ -42,6 +42,22 @@ Write-Host $generate
 #Generate User
 New-ADUser -Name "$FirstName $LastName" -GivenName "$FirstName" -Surname "$LastName" -SamAccountName "$ErsterBuchstabe.$Lastname" -EmailAddress ($_.givenName + '.' + $_.surname + '@test.net') -AccountPassword (ConvertFrom-SecureString -AsSecureString "$generate" -force) -Enable $true
 
+if ($Group -eq 'Admin') {
+    Add-ADGroupMember -Identity AdminGroup -Members "$ErsterBruchstabe.$Nachname"
+    Add-ADGroupMember -Identity SuperadminGroup -Members "$ErsterBruchstabe.$Nachname"
+    Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+    
+    
+    if ($Group -eq 'Leader') {
+    Add-ADGroupMember -Identity LeaderGroup -Members "$ErsterBruchstabe.$Nachname"
+    Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"
+    Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+    
+    if ($Group -eq 'Member') {
+    Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+    }
+
+
 #Userdaten In Textdokument
 $pfad = "C:\User\%User%\Desktop\"
 for($i=0; $i -lt $i++) {
@@ -56,6 +72,9 @@ Add-Content -Path C:\User\%User%\Desktop\GeneratedUser.txt $userdaten
 
 
 if ($ConfigEing -eq 'g') {
+
+$Group = Read-Host "Welche Nutzergruppe? (Admin/Leader/Member)"
+
 $ErsterBuchstabe = Read-Host "Erster Buchstabe des Vornamens"
 $Lastname = Read-Host "Nachname"
 
