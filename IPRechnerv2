@@ -1,0 +1,230 @@
+from tkinter import * 
+import tkinter
+
+Fenster = Tk()
+Fenster.title ("Test Fenster")
+Fenster.geometry("450x300")
+
+
+
+
+
+
+
+
+myvarA = int()
+myvarB = int()
+myvarC = int()
+myvarD = int()
+myvarE = int()
+myvarF = int()
+myvarG = int()
+myvarH = int()
+myvarI = int()
+
+myvarX = int(0)
+myvarY = int(255)
+myvarZ = int(00000000)
+
+SuffixAusgabe = str(123456)
+IPBinaerAusgabe = int(654321)
+SuffixAusgabeBin = int()
+SuffixAusgabeBinEnd = int()
+
+SubnetmaksBinAus = int()
+SubnetmaksBinAusZwischen = int()
+SubnetmaksBinAusGesammt = int()
+
+IPVergleichBinIP = int()
+IPVergleichBinIPzwischen = int()
+IPVergleichBinIPGesammt = int()
+
+IPVergleichBinUsffix = int()
+IPVergleichBinUsffixzwischen = int()
+IPVergleichBinUsffixGesammt = int()
+
+SubnetmaksAUS = int()
+tempI = int()
+Suffix = int()
+
+
+
+
+
+
+
+
+def myvarWrittenIP():
+    myvarA = int(entry_myvarA.get())
+    myvarB = int(entry_myvarB.get())
+    myvarC = int(entry_myvarC.get())
+    myvarD = int(entry_myvarD.get())
+
+    tempa = "{0:08b}".format(myvarA)
+    tempb = "{0:08b}".format(myvarB)
+    tempc = "{0:08b}".format(myvarC)
+    tempd = "{0:08b}".format(myvarD)
+
+    IPEingabe = (tempa, tempb, tempc, tempd)
+
+    global IPBinaerAusgabe
+    IPBinaerAusgabe = ".".join(IPEingabe)
+    IPBINAUS.config(text=IPBinaerAusgabe)
+    print(myvarA, myvarB, myvarC, myvarD)
+    print(IPBinaerAusgabe)
+
+
+def myvarWrittenSubNetMask():
+    myvarE = int(entry_myvarE.get())
+    myvarF = int(entry_myvarF.get())
+    myvarG = int(entry_myvarG.get())
+    myvarH = int(entry_myvarH.get())
+
+    tempe = "{0:08b}".format(myvarE)
+    tempf = "{0:08b}".format(myvarF)
+    tempg = "{0:08b}".format(myvarG)
+    temph = "{0:08b}".format(myvarH)
+
+    SubNetEingabe = (tempe, tempf, tempg, temph)
+
+    global SubnetmaksAUS
+    SubnetmaksAUS = ".".join(SubNetEingabe)
+    SUBNETAUS.config(text=SubnetmaksAUS)
+    print(myvarE, myvarF, myvarG, myvarH)
+    print(SubnetmaksAUS)
+
+
+def SuffixInput():
+    global tempI
+    myvarI = int(entry_myvarI.get())
+
+    tempI = "{0:08b}".format(myvarI)
+    
+    PRINTSUFFIXBIN.config(text=tempI)
+
+    print(tempI)
+
+
+def SuffixAUS():
+    global SuffixAusgabe
+    global SuffixAusgabeBin
+    global SuffixAusgabeBinEnd
+
+    SuffixAusgabe = int(entry_myvarI.get())
+    print(SuffixAusgabe)
+
+    SuffixAusgabe = int()
+    SuffixAusgabeBin = int()
+
+    z = int(0)
+    while (z < SuffixAusgabe):
+        SuffixAusgabeBin = "1".join(SuffixAusgabeBinEnd)
+        print(SuffixAusgabeBinEnd)
+        print(SuffixAusgabeBin)
+
+        z+= 1
+    
+    SuffixAusgabeBinEnd = SuffixAusgabeBin << (32 - myvarI)
+    print(SuffixAusgabeBinEnd)
+        
+
+def iptobinaer():
+    if (CalculateIP['state'] == tkinter.NORMAL):
+        myvarWrittenIP()
+        myvarWrittenSubNetMask()
+        SuffixAUS()
+
+
+def test():
+    global SuffixAusgabe
+    global IPBinaerAusgabe
+    global SubnetmaksBinAus
+    global SubnetmaksBinAusZwischen
+    global SubnetmaksBinAusGesammt
+    global IPVergleichBinIP
+    global IPVergleichBinIPzwischen
+    global IPVergleichBinUsffix
+    global IPVergleichBinUsffixzwischen
+
+    i = int()
+    n = int(6)
+    while i < n: 
+        IPVergleichBinIPzwischen = (SuffixAusgabe[i])
+        IPVergleichBinUsffixzwischen = (IPBinaerAusgabe[i])
+
+        if (IPVergleichBinUsffixzwischen == IPVergleichBinIPzwischen):
+            SubnetmaksBinAusZwischen = 1
+        else:
+            SubnetmaksBinAusZwischen = 0
+
+        SubnetmaksBinAusGesammt = "".join(SubnetmaksBinAusZwischen)
+        i+= 1
+
+    print(SubnetmaksBinAusGesammt)
+
+
+
+
+
+
+
+
+CalculateIP = Button(master=Fenster, bg='white', text='OK', command=SuffixAUS)
+CalculateIP.place(x=10, y=100, width=100, height=22)
+
+
+
+
+entry_myvarA = Entry(Fenster)
+entry_myvarA.place(x=5, y=5, width=30)
+entry_myvarB = Entry(Fenster)
+entry_myvarB.place(x=45, y=5, width=30)
+entry_myvarC = Entry(Fenster)
+entry_myvarC.place(x=85, y=5, width=30)
+entry_myvarD = Entry(Fenster)
+entry_myvarD.place(x=125, y=5, width=30)
+
+entry_myvarE = Entry(Fenster)
+entry_myvarE.place(x=5, y=30, width=30)
+entry_myvarF = Entry(Fenster)
+entry_myvarF.place(x=45, y=30, width=30)
+entry_myvarG = Entry(Fenster)
+entry_myvarG.place(x=85, y=30, width=30)
+entry_myvarH = Entry(Fenster)
+entry_myvarH.place(x=125, y=30, width=30)
+
+entry_myvarI = Entry(Fenster)
+entry_myvarI.place(x=20, y=55, width=30)
+
+IPBINAUS = Label(master=Fenster, bg='gray', text='')
+IPBINAUS.place(x=164, y=144, width=200, height=27)
+SUBNETAUS = Label(master=Fenster, bg='gray', text='')
+SUBNETAUS.place(x=164, y=174, width=200, height=27)
+PRINTSUFFIXBIN = Label(master=Fenster, bg='gray', text='')
+PRINTSUFFIXBIN.place(x=164, y=204, width=200, height=27)
+
+Dot = Label(master=Fenster, text='.')
+Dot.place(x=35, y=5)
+Dot = Label(master=Fenster, text='.')
+Dot.place(x=75, y=5)
+Dot = Label(master=Fenster, text='.')
+Dot.place(x=115, y=5)
+Dot = Label(master=Fenster, text='.')
+Dot.place(x=35, y=30)
+Dot = Label(master=Fenster, text='.')
+Dot.place(x=75, y=30)
+Dot = Label(master=Fenster, text='.')
+Dot.place(x=115, y=30)
+
+Dot = Label(master=Fenster, text='/')
+Dot.place(x=5, y=55)
+
+
+
+
+
+
+
+
+Fenster.mainloop()
+mainloop()
