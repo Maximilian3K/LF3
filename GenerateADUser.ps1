@@ -42,7 +42,8 @@ Write-Host $generate
 #Generate User
 New-ADUser -Name "$FirstName $LastName" -GivenName "$FirstName" -Surname "$LastName" -SamAccountName "$ErsterBuchstabe.$Lastname" -EmailAddress ($_.givenName + '.' + $_.surname + '@test.net') -AccountPassword (ConvertFrom-SecureString -AsSecureString "$generate" -force) -Enable $true
 
-if ($Group -eq 'Admin') {
+
+    if ($Group -eq 'Admin') {
     Add-ADGroupMember -Identity AdminGroup -Members "$ErsterBruchstabe.$Nachname"
     Add-ADGroupMember -Identity SuperadminGroup -Members "$ErsterBruchstabe.$Nachname"
     Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
@@ -55,7 +56,7 @@ if ($Group -eq 'Admin') {
     
     if ($Group -eq 'Member') {
     Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
-    }
+      
 
 
 #Userdaten In Textdokument
