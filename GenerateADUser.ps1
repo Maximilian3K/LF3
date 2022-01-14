@@ -5,9 +5,8 @@ $ConfigEing = Read-Host "User erstellen (e)/ User Gruppen aendern (g)/ User Deak
 if ($ConfigEing -eq 'e'){
 
 #Eingabe der Attribute
-$FirstName = Read-Host "Vorname"
-$ErsterBuchstabe = Read-Host "Erster Buchstabe des Vornamens"
-$Lastname = Read-Host "Nachname"
+$FirstName = Read-Host "Vorname:"
+$Lastname = Read-Host "Nachname:"
 
 $cof = Read-Host "Koplexes Passwort? (y/n)"
 $Group = Read-Host "Welche Nutzergruppe? (Admin/Leader/Member)"
@@ -40,22 +39,21 @@ Write-Host $generate
 
 
 #Generate User
-New-ADUser -Name "$FirstName $LastName" -GivenName "$FirstName" -Surname "$LastName" -SamAccountName "$ErsterBuchstabe.$Lastname" -EmailAddress ($_.givenName + '.' + $_.surname + '@test.net') -AccountPassword (ConvertFrom-SecureString -AsSecureString "$generate" -force) -Enable $true
+New-ADUser -Name "$FirstName $LastName" -GivenName "$FirstName" -Surname "$LastName" -SamAccountName "$FirstName.$Lastname" -EmailAddress ($_.givenName + '.' + $_.surname + '@test.net') -AccountPassword (ConvertFrom-SecureString -AsSecureString "$generate" -force) -Enable $true
 
 
     if ($Group -eq 'Admin') {
-    Add-ADGroupMember -Identity AdminGroup -Members "$ErsterBruchstabe.$Nachname"
-    Add-ADGroupMember -Identity SuperadminGroup -Members "$ErsterBruchstabe.$Nachname"
-    Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+    Add-ADGroupMember -Identity AdminGroup -Members "$FirstName.$Nachname"
+    Add-ADGroupMember -Identity LeaderGroup -Members "$FirstName.$Nachname"
+    Add-ADGroupMember -Identity MemberGroup -Members "$FirstName.$Nachname"}
     
     
     if ($Group -eq 'Leader') {
-    Add-ADGroupMember -Identity LeaderGroup -Members "$ErsterBruchstabe.$Nachname"
-    Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"
-    Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+    Add-ADGroupMember -Identity LeaderGroup -Members "$FirstName.$Nachname"
+    Add-ADGroupMember -Identity MemberGroup -Members "$FirstName.$Nachname"}
     
     if ($Group -eq 'Member') {
-    Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+    Add-ADGroupMember -Identity MemberGroup -Members "$FirstName.$Nachname"}
       
 
 
@@ -65,7 +63,7 @@ for($i=0; $i -lt $i++) {
 New-Item -Path $pfad -ItemType file -Name "GeneratedUser.txt"}
 
 Get-Command -Verb Format-List
-$userdaten = $FirstName, $Lastname, "$ErsterBruchstabe.$Nachname", $generate, $Group
+$userdaten = $FirstName, $Lastname, "$FirstName.$Nachname", $generate, $Group
 Add-Content -Path C:\User\%User%\Desktop\GeneratedUser.txt $userdaten
 }
 
@@ -76,32 +74,32 @@ if ($ConfigEing -eq 'g') {
 
 $Group = Read-Host "Welche Nutzergruppe? (Admin/Leader/Member)"
 
-$ErsterBuchstabe = Read-Host "Erster Buchstabe des Vornamens"
-$Lastname = Read-Host "Nachname"
+$FirstName = Read-Host "Vorname:"
+$Lastname = Read-Host "Nachname:"
 
 if ($Group -eq 'Admin') {
-Add-ADGroupMember -Identity AdminGroup -Members "$ErsterBruchstabe.$Nachname"
-Add-ADGroupMember -Identity SuperadminGroup -Members "$ErsterBruchstabe.$Nachname"
-Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+Add-ADGroupMember -Identity AdminGroup -Members "$FirstName.$Nachname"
+Add-ADGroupMember -Identity SuperadminGroup -Members "$FirstName.$Nachname"
+Add-ADGroupMember -Identity MemberGroup -Members "$FirstName.$Nachname"}
 
 
 if ($Group -eq 'Leader') {
-Add-ADGroupMember -Identity LeaderGroup -Members "$ErsterBruchstabe.$Nachname"
-Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"
-Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+Add-ADGroupMember -Identity LeaderGroup -Members "$FirstName.$Nachname"
+Add-ADGroupMember -Identity MemberGroup -Members "$FirstName.$Nachname"
+Add-ADGroupMember -Identity MemberGroup -Members "$FirstName.$Nachname"}
 
 if ($Group -eq 'Member') {
-Add-ADGroupMember -Identity MemberGroup -Members "$ErsterBruchstabe.$Nachname"}
+Add-ADGroupMember -Identity MemberGroup -Members "$FirstName.$Nachname"}
 }
 
 
 
 
 if ($ConfigEing -eq 'd') {
-$ErsterBuchstabe = Read-Host "Erster Buchstabe des Vornamens"
-$Lastname = Read-Host "Nachname"
+$FirstName = Read-Host "Vorname:"
+$Lastname = Read-Host "Nachname:"
 
-Disable-ADAccount -Identity "$ErsterBruchstabe.$Nachname"
+Disable-ADAccount -Identity "$FirstName.$Nachname"
 }
 
 
